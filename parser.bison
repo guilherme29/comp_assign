@@ -1,6 +1,6 @@
 // Tokens
-%token 
-  INT  
+%token
+  INT
   PLUS
   MINUS
   MULT
@@ -33,6 +33,7 @@
 
 %type <intValue> INT
 %type <exprValue> expr
+%type <expr_boolValue> expr_bool
 
 // Use "%code requires" to make declarations go
 // into both parser.c and parser.h
@@ -50,10 +51,10 @@ Expr* root;
 }
 
 %%
-program: expr { root = $1; }
+program: expr { root = $1; };
 
 expr_bool:
-  TRUE { 
+  TRUE {
     $$ = ast_bool(TRUE);
   }
   |
@@ -86,13 +87,13 @@ expr_bool:
   }
 ;
 
-expr: 
-  INT { 
-    $$ = ast_integer($1); 
+expr:
+  INT {
+    $$ = ast_integer($1);
   }
-  | 
-  expr PLUS expr { 
-    $$ = ast_operation(PLUS, $1, $3); 
+  |
+  expr PLUS expr {
+    $$ = ast_operation(PLUS, $1, $3);
   }
   |
   expr MINUS expr {
@@ -108,7 +109,7 @@ expr:
   }
   |
   expr MOD expr {
-    $$ = ast_operation(PERC, $1 , $3);
+    $$ = ast_operation(MOD, $1 , $3);
   }
   ;
 %%
@@ -116,4 +117,3 @@ expr:
 void yyerror(const char* err) {
   printf("Line %d: %s - '%s'\n", yyline, err, yytext  );
 }
-

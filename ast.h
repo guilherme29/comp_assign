@@ -5,14 +5,14 @@
 
 // AST for expressions
 struct _Expr {
-  enum { 
+  enum {
     E_INTEGER,
     E_OPERATION
   } kind;
   union {
     int value; // for integer values
-    struct { 
-      int operator; // PLUS, MINUS, etc 
+    struct {
+      int operator; // PLUS, MINUS, etc
       struct _Expr* left;
       struct _Expr* right;
     } op; // for binary expressions
@@ -30,8 +30,8 @@ struct _Expr_bool {
       int operator;
       struct _Expr* left;
       struct _Expr* right;
-    } op_bool;
-  } attr_bool;
+    } op;
+  } attr;
 };
 
 typedef struct _Expr Expr; // Convenience typedef

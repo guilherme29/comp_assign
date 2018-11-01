@@ -23,15 +23,15 @@ Expr* ast_operation
 Expr_bool* ast_bool (int v){
   Expr_bool* node = (Expr_bool*) malloc(sizeof(Expr_bool));
   node->kind = E_BOOL;
-  node->attr_bool.value = v;
+  node->attr.value = v;
   return node;
 }
 
 Expr_bool* ast_operation_bool
 (int operator, Expr* left, Expr* right) {
-  Expr* node = (Expr*) malloc (sizeof(Expr));
+  Expr_bool* node = (Expr_bool*) malloc (sizeof(Expr_bool));
   node->kind = E_OPERATION_BOOL;
-  node->attr_bool.op_bool.left = left;
-  node->attr_bool.op_bool.right = right;
+  node->attr.op.left = left;
+  node->attr.op.right = right;
   return node;
 }
