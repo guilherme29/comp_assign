@@ -2,9 +2,24 @@
 %token 
   INT  
   PLUS
+  MINUS
+  MULT
+  DIV
+  MOD
+  TRUE
+  FALSE
+  EQUALS
+  DIFF
+  GT
+  LT
+  GET
+  LET
 
 // Operator associativity & precedence
-%left PLUS
+%left EQUAL DIFF GT LT GET LET
+%left PLUS MINUS
+%left MULT DIV
+%left MOD
 
 // Root-level grammar symbol
 %start program;
@@ -12,7 +27,8 @@
 // Types/values in association to grammar symbols.
 %union {
   int intValue;
-  Expr* exprValue; 
+  Expr* exprValue;
+  Expr_bool* expr_boolValue;
 }
 
 %type <intValue> INT
@@ -36,6 +52,40 @@ Expr* root;
 %%
 program: expr { root = $1; }
 
+expr_bool:
+  TRUE { 
+    $$ = ast_bool(TRUE);
+  }
+  |
+  FALSE {
+    $$ = ast_bool(FALSE);
+  }
+  |
+  expr EQUALS expr {
+    $$ = ast_operation_bool(EQUALS, $1, $3);
+  }
+  |
+  expr DIFF expr {
+    $$ = ast_operation_bool(DIFF, $1, $3);
+  }
+  |
+  expr GT expr {
+    $$ = ast_operation_bool(GT, $1, $3);
+  }
+  |
+  expr GET expr {
+    $$ = ast_operation_bool(GET, $1, $3);
+  }
+  |
+  expr LT expr {
+    $$ = ast_operation_bool(LT, $1, $3);
+  }
+  |
+  expr LET expr {
+    $$ = ast_operation_bool(LET, $1, $3);
+  }
+;
+
 expr: 
   INT { 
     $$ = ast_integer($1); 
@@ -43,7 +93,23 @@ expr:
   | 
   expr PLUS expr { 
     $$ = ast_operation(PLUS, $1, $3); 
-  } 
+  }
+  |
+  expr MINUS expr {
+    $$ = ast_operation(MINUS, $1, $3);
+  }
+  |
+  expr MULT expr {
+    $$ = ast_operation(MULT, $1, $3);
+  }
+  |
+  expr DIV expr {
+    $$ = ast_operation(DIV, $1, $3);
+  }
+  |
+  expr MOD expr {
+    $$ = ast_operation(PERC, $1 , $3);
+  }
   ;
 %%
 

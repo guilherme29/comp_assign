@@ -19,10 +19,26 @@ struct _Expr {
   } attr;
 };
 
-typedef struct _Expr Expr; // Convenience typedef
+struct _Expr_bool {
+  enum {
+     E_BOOL,
+     E_OPERATION_BOOL
+  } kind;
+  union {
+    int value;
+    struct {
+      int operator;
+      struct _Expr* left;
+      struct _Expr* right;
+    } op_bool;
+  } attr_bool;
+};
 
+typedef struct _Expr Expr; // Convenience typedef
+typedef struct _Expr_bool Expr_bool;
 // Constructor functions (see implementation in ast.c)
 Expr* ast_integer(int v);
 Expr* ast_operation(int operator, Expr* left, Expr* right);
+Expr_bool* ast_operation_bool(int operator, Expr* left, Expr* right);
 
 #endif

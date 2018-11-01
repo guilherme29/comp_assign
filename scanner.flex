@@ -14,11 +14,27 @@ int yyline = 1;
 #.*\n { yyline++; }
 \n { yyline++; }
 
+"+" { return PLUS; }
+"-" { return MINUS; }
+"*" { return MULT; }
+"/" { return DIV; }
+"%" { return MOD; }
+
+"<" { return LT; }
+">" { return GT; }
+"<=" { return LET; }
+">=" { return GET; }
+"!=" { return DIFF; }
+"==" { return EQUALS; }
+
+
+
+
 \-?[0-9]+ { 
    yylval.intValue = atoi(yytext);
    return INT; 
 }
-"+" { return PLUS; }
+
 .  { yyerror("unexpected character"); }
 %%
 
