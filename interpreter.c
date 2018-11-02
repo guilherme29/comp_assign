@@ -42,7 +42,7 @@ int eval_bool(Expr_bool* expr) {
   else if(expr->kind == E_INTEGER){
     result = expr->attr.value;
   }
-  else if(expr->kind == E_INTEGER){
+  else if(expr->kind == E_OPERATION_BOOL){
     int vLeft = eval(expr->attr.op.left);
     int vRight = eval(expr->attr.op.right);
     switch(expr->attr.op.operator){
