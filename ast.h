@@ -78,11 +78,18 @@ struct _Cmd {
 typedef struct _Expr Expr; // Convenience typedef
 typedef struct _Expr_bool Expr_bool;
 typedef struct _Cmd Cmd;
-typedef struct _Cmd_list Cmd_list;
 
 // Constructor functions (see implementation in ast.c)
 Expr* ast_integer(int v);
 Expr* ast_operation(int operator, Expr* left, Expr* right);
 Expr_bool* ast_operation_bool(int operator, Expr* left, Expr* right);
+
+Cmd* ast_atrib(char* string, Expr* expr);
+Cmd* ast_if(Expr_bool* expr, Cmd* list);
+Cmd* ast_ifelse(Expr_bool* expr, Cmd* list1, Cmd* list2);
+Cmd* ast_while(Expr_bool* expr, Cmd* list);
+Cmd* ast_scanf(char* var);
+Cmd* ast_printf(Expr* expr);
+Cmd* ast_Cmd_list(Cmd* cmd, Cmd* next);
 
 #endif
