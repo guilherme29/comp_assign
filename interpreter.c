@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include "parser.h"
 
+void print_tabs(int tabs){
+  for(int i=0; i < tabs; i++){
+    printf(" ");
+  }
+  return;
+}
+
 int eval(Expr* expr) {
   int result = 0;
   if (expr == 0) {
