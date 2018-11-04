@@ -135,6 +135,7 @@ void eval_bool(Expr_bool* expr, int tabs) {
 }
 
 void eval_cmd(Cmd* list, int tabs) {
+  if(list == NULL) return;
   switch (list->kind) {
     case E_LISTCMD:
       eval_cmd(list->attr.list_cmd.head, tabs+1);
@@ -197,7 +198,6 @@ int main(int argc, char** argv) {
   } //  yyin = stdin
   if (yyparse() == 0) {
       printf("MAIN\n");
-      if(root == NULL) return 0;
       Cmd* list = root;
       eval_cmd(list, 1);
       //printf("Result = %d\n", eval(root));
