@@ -26,8 +26,34 @@ int yyline = 1;
 ">=" { return GET; }
 "!=" { return DIFF; }
 "==" { return EQUALS; }
+"true" { return TRUE; }
+"false" { return FALSE; }
+
+"import" { return IMPORT; }
+"int main" { return MAIN; }
+"(" { return OPEN; }
+")" { return CLOSE; }
+"{" { return OPEN_BRACKET; }
+"}" { return CLOSE_BRACKET; }
+"=" { return ATRIB; }
+";" { return SEMICOLON; }
+"if" { return IF; }
+"else" { return ELSE; }
+"while" { return WHILE; }
+"printf" { return PRINTF; }
+"scanf" { return SCANF; }
+"&" { return ADDRESS; }
+"%d" { return PRINT_INT; }
 
 
+\-?[0-9]+ {
+   yylval.intValue = atoi(yytext);
+   return INT;
+}
+[a-z][a-zA-Z]* {
+	yylval.var = strdup(yytext);
+	return VAR;
+}
 
 
 \-?[0-9]+ {
