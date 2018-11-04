@@ -30,7 +30,7 @@ Expr_bool* ast_bool (int v){
 
 Expr_bool* ast_operation_bool
 (int operator, Expr* left, Expr* right) {
-  Expr_bool* node = (Expr_bool*) malloc (sizeof(Expr_bool));
+  Expr_bool* node = (Expr_bool*) malloc(sizeof(Expr_bool));
   node->kind = E_OPERATION_BOOL;
   node->attr.op.left = left;
   node->attr.op.right = right;
