@@ -92,6 +92,6 @@ Cmd* ast_ifelse(Expr_bool* expr, Cmd* list1, Cmd* list2);
 Cmd* ast_while(Expr_bool* expr, Cmd* list);
 Cmd* ast_scanf(char* var);
 Cmd* ast_printf(Expr* expr);
-Cmd* ast_Cmd_list(Cmd* cmd, Cmd* next);
+Cmd* ast_cmd_list(Cmd* cmd, Cmd* next);
 
 #endif
