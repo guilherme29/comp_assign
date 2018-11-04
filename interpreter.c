@@ -124,6 +124,52 @@ void eval_bool(Expr_bool* expr, int tabs) {
   }
 }
 
+void eval_cmd(Cmd* list, int tabs) {
+  switch (list->kind) {
+    case E_ATRIB:
+      print_tabs(tabs);
+      printf("ATRIB\n");
+      print_tabs(tabs+1);
+      printf("%s\n", list->attr.atrib.left);
+      eval(list->attr.atrib.right, tabs+1);
+      break;
+    case E_IF:
+      print_tabs(tabs);
+      printf("IF\n");
+      eval_bool(list->attr._if.expr, tabs+1);
+      eval_cmd(list->attr._if.list, tabs+1);
+      break;
+    case E_IFELSE:
+      print_tabs(tabs);
+      printf("IF\n");
+      eval_bool(list->attr._ifelse.expr, tabs+1);
+      eval_cmd(list->attr._ifelse.list1, tabs+1);
+      print_tabs(tabs);
+      printf("ELSE\n");
+      eval_cmd(list->attr._ifelse.list2, tabs+1);
+      break;
+    case E_WHILE:
+      print_tabs(tabs);
+      printf("WHILE\n");
+      eval_bool(list->attr._while.expr, tabs+1);
+      eval_cmd(list->attr._while.list, tabs+1);
+      break;
+    case E_SCANF:
+    	print_tabs(tabs);
+    	printf("SCANF\n");
+    	print_tabs(tabs+1);
+    	printf("%s\n", list->attr._scanf.var);
+    	break;
+    case E_PRINTF:
+    	print_tabs(tabs);
+    	printf("PRINTF\n");
+    	eval(list->attr._printf.expr, tabs+1);
+    	break;
+  }
+  return;
+}
+
+
 int main(int argc, char** argv) {
   --argc; ++argv;
   if (argc != 0) {
