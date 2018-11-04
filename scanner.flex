@@ -43,8 +43,9 @@ int yyline = 1;
 "printf" { return PRINTF; }
 "scanf" { return SCANF; }
 "&" { return ADDRESS; }
-"%d" { return PRINT_INT; }
-
+"%d" { return PR_INT; }
+"," { return COMMA; }
+"\"" {return QUOTES; }
 
 \-?[0-9]+ {
    yylval.intValue = atoi(yytext);
