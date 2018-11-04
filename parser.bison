@@ -45,6 +45,8 @@
   int intValue;
   Expr* exprValue;
   Expr_bool* expr_boolValue;
+  Cmd* cmd;
+  char* var;
 }
 
 %type <intValue> INT
