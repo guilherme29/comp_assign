@@ -19,6 +19,11 @@ void eval(Expr* expr, int tabs) {
     printf("%d\n", expr->attr.value);
     result = expr->attr.value;
   }
+  else if (expr->kind == E_VAR) {
+    print_tabs(tabs);
+    printf("%s\n", expr->attr.var);
+    return;
+  }
   else if (expr->kind == E_OPERATION) {
     //int vLeft = eval(expr->attr.op.left);
     //int vRight = eval(expr->attr.op.right);
