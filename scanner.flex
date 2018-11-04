@@ -26,8 +26,8 @@ int yyline = 1;
 ">=" { return GET; }
 "!=" { return DIFF; }
 "==" { return EQUALS; }
-"true" { return TRUE; }
-"false" { return FALSE; }
+"TRUE" { return BTRUE; }
+"FALSE" { return BFALSE; }
 
 "include" { return INCLUDE; }
 "int main" { return MAIN; }
