@@ -34,6 +34,8 @@
 %type <intValue> INT
 %type <exprValue> expr
 %type <expr_boolValue> expr_bool
+%type <cmd> cmd
+%type <var> var
 
 // Use "%code requires" to make declarations go
 // into both parser.c and parser.h
