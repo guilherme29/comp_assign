@@ -84,6 +84,10 @@ program:
   CARDINAL INCLUDE LT STDIO_H GT MAIN OPEN CLOSE OPEN_BRACKET cmd_list CLOSE_BRACKET {
     root = $10;
   }
+  |
+  MAIN OPEN CLOSE OPEN_BRACKET cmd_list CLOSE_BRACKET {
+    root = $5;
+  }
 ;
 
 cmd_list:
@@ -92,8 +96,8 @@ cmd_list:
   cmd cmd_list { $$ = ast_cmd_list($1, $2); }
 
 cmd:
-  VAR ATRIB expr SEMICOLON { //atribuicao
-    $$ = ast_atrib($1, $3);
+  INT VAR ATRIB expr SEMICOLON { //atribuicao
+    $$ = ast_atrib($2, $4);
   }
   |
   IF OPEN expr_bool CLOSE OPEN_BRACKET cmd_list CLOSE_BRACKET { //if com chavetas
