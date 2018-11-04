@@ -66,6 +66,7 @@ Cmd* ast_ifelse(Expr_bool* expr, Cmd* list1, Cmd* list2){
 
 Cmd* ast_while(Expr_bool* expr, Cmd* list){
   Cmd* node = (Cmd*) malloc(sizeof(Cmd*));
+  node->kind = E_WHILE;
   node->attr._while.expr = expr;
   node->attr._while.list = list;
   return node;
