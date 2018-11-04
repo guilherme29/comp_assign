@@ -53,6 +53,7 @@
   Expr* exprValue;
   Expr_bool* expr_boolValue;
   Cmd* cmd;
+  Cmd* cmd_list;
   char* var;
 }
 
@@ -60,7 +61,8 @@
 %type <exprValue> expr
 %type <expr_boolValue> expr_bool
 %type <cmd> cmd
-%type <var> var
+%type <cmd_list> cmd_list
+%type <var> VAR
 
 // Use "%code requires" to make declarations go
 // into both parser.c and parser.h
@@ -74,7 +76,7 @@ extern int yyline;
 extern char* yytext;
 extern FILE* yyin;
 extern void yyerror(const char* msg);
-Expr* root;
+Cmd* root;
 }
 
 %%
