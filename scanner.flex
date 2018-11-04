@@ -55,11 +55,5 @@ int yyline = 1;
 	return VAR;
 }
 
-
-\-?[0-9]+ {
-   yylval.intValue = atoi(yytext);
-   return INT;
-}
-
 .  { yyerror("unexpected character"); }
 %%
