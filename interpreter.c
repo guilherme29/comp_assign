@@ -190,6 +190,9 @@ int main(int argc, char** argv) {
     }
   } //  yyin = stdin
   if (yyparse() == 0) {
+      printf("MAIN\n");
+      Cmd* list = root;
+      eval_cmd(list, 1);
       //printf("Result = %d\n", eval(root));
   }
   return 0;
