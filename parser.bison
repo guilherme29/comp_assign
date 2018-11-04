@@ -131,7 +131,39 @@ expr:
   expr MOD expr {
     $$ = ast_operation(MOD, $1 , $3);
   }
-  ;
+;
+
+cmd_list:
+  { $$ = NULL; /*se estiver vazia*/ }
+  |
+  cmd cmd_list { $$ = ast_cmd_list($1, $2); }
+
+cmd:
+  VAR ATRIB expr SEMICOLON { //atribuicao
+    $$ = ast_atrib($1, $3);
+  }
+  |
+  IF OPEN expr_bool CLOSE OPEN_BRACKET cmd_list CLOSE_BRACKET { //if com chavetas
+    $$ = ast_if($3, $6);
+  }
+  |
+  IF OPEN expr_bool CLOSE OPEN_BRACKET cmd_list CLOSE_BRACKET ELSE OPEN_BRACKET cmd_list CLOSE_BRACKET {
+    $$ = ast_ifelse($3, $6, $10);
+  }
+  |
+  WHILE OPEN expr_bool CLOSE OPEN_BRACKET cmd_list CLOSE_BRACKET {
+    $$ = ast_while($3, $6);
+  }
+  |
+  SCANF OPEN QUOTES PR_INT QUOTES COMMA ADDRESS VAR CLOSE SEMICOLON {
+    $$ = ast_scanf($8);
+  }
+  |
+  PRINTF OPEN QUOTES PR_INT QUOTES COMMA VAR CLOSE SEMICOLON {
+    $$ = ast_printf($7);
+  }
+;
+
 %%
 
 void yyerror(const char* err) {
