@@ -131,11 +131,11 @@ void eval_bool(Expr_bool* expr, int tabs) {
   else {
     if(expr->attr.var == 280){          //TRUE
       print_tabs(tabs);
-      printf("TRUE\n");
+      //printf("TRUE\n");
     }
     else {
       print_tabs(tabs);
-      printf("FALSE\n");
+      //printf("FALSE\n");
     }
   }
 }
