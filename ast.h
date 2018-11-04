@@ -86,6 +86,9 @@ typedef struct _Cmd Cmd;
 Expr* ast_integer(int v);
 Expr* ast_operation(int operator, Expr* left, Expr* right);
 Expr_bool* ast_operation_bool(int operator, Expr* left, Expr* right);
+Expr_bool* ast_bool(int v);
+Expr* ast_var(char* string);
+
 
 Cmd* ast_atrib(char* string, Expr* expr);
 Cmd* ast_if(Expr_bool* expr, Cmd* list);
