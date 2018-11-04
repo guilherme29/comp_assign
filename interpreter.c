@@ -81,43 +81,43 @@ void eval_bool(Expr_bool* expr, int tabs) {
       print_tabs(tabs);
       printf("EQUALS\n");
       //result = (vLeft == vRight);
-      eval_bool(expr->attr.op.left, tabs + 1);
-      eval_bool(expr->attr.op.right, tabs + 1);
+      eval(expr->attr.op.left, tabs + 1);
+      eval(expr->attr.op.right, tabs + 1);
       break;
     case DIFF:
       print_tabs(tabs);
       printf("DIFF\n");
       //result = (vLeft != vRight);
-      eval_bool(expr->attr.op.left, tabs + 1);
-      eval_bool(expr->attr.op.right, tabs + 1);
+      eval(expr->attr.op.left, tabs + 1);
+      eval(expr->attr.op.right, tabs + 1);
       break;
     case GT:
       print_tabs(tabs);
       printf("GT\n");
       //result = (vLeft > vRight);
-      eval_bool(expr->attr.op.left, tabs + 1);
-      eval_bool(expr->attr.op.right, tabs + 1);
+      eval(expr->attr.op.left, tabs + 1);
+      eval(expr->attr.op.right, tabs + 1);
       break;
     case GET:
       print_tabs(tabs);
       printf("GET\n");
       //result = (vLeft >= vRight);
-      eval_bool(expr->attr.op.left, tabs + 1);
-      eval_bool(expr->attr.op.right, tabs + 1);
+      eval(expr->attr.op.left, tabs + 1);
+      eval(expr->attr.op.right, tabs + 1);
       break;
     case LT:
       print_tabs(tabs);
       printf("LT\n");
       //result = (vLeft < vRight);
-      eval_bool(expr->attr.op.left, tabs + 1);
-      eval_bool(expr->attr.op.right, tabs + 1);
+      eval(expr->attr.op.left, tabs + 1);
+      eval(expr->attr.op.right, tabs + 1);
       break;
     case LET:
       print_tabs(tabs);
       printf("LET\n");
       //result = (vLeft <= vRight);
-      eval_bool(expr->attr.op.left, tabs + 1);
-      eval_bool(expr->attr.op.right, tabs + 1);
+      eval(expr->attr.op.left, tabs + 1);
+      eval(expr->attr.op.right, tabs + 1);
       break;
     default: yyerror("Unknown operator!");
     }
