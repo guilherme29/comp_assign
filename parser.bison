@@ -22,8 +22,8 @@
   MULT
   DIV
   MOD
-  TRUE
-  FALSE
+  BTRUE
+  BFALSE
   EQUALS
   DIFF
   GT
@@ -112,19 +112,19 @@ cmd:
     $$ = ast_scanf($8);
   }
   |
-  PRINTF OPEN QUOTES PR_INT QUOTES COMMA VAR CLOSE SEMICOLON {
+  PRINTF OPEN QUOTES PR_INT QUOTES COMMA expr CLOSE SEMICOLON {
     $$ = ast_printf($7);
   }
 ;
 
 
 expr_bool:
-  TRUE {
-    $$ = ast_bool(TRUE);
+  BTRUE {
+    $$ = ast_bool(BTRUE);
   }
   |
-  FALSE {
-    $$ = ast_bool(FALSE);
+  BFALSE {
+    $$ = ast_bool(BFALSE);
   }
   |
   expr EQUALS expr {
@@ -155,6 +155,10 @@ expr_bool:
 expr:
   INT {
     $$ = ast_integer($1);
+  }
+  |
+  VAR {
+    $$ = ast_var($1);
   }
   |
   expr PLUS expr {
