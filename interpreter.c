@@ -2,7 +2,8 @@
 #include "parser.h"
 
 void print_tabs(int tabs){
-  for(int i=0; i < tabs; i++){
+  int i;
+  for(i=0; i < tabs; i++){
     printf(" ");
   }
   return;
