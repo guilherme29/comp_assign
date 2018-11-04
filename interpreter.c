@@ -122,6 +122,16 @@ void eval_bool(Expr_bool* expr, int tabs) {
     default: yyerror("Unknown operator!");
     }
   }
+  else {
+    if(expr->attr.var == 280){          //TRUE
+      print_tabs(tabs);
+      printf("TRUE\n");
+    }
+    else {
+      print_tabs(tabs);
+      printf("FALSE\n");
+    }
+  }
 }
 
 void eval_cmd(Cmd* list, int tabs) {
