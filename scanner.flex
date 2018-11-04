@@ -30,11 +30,10 @@ int yyline = 1;
 
 
 
-\-?[0-9]+ { 
+\-?[0-9]+ {
    yylval.intValue = atoi(yytext);
-   return INT; 
+   return INT;
 }
 
 .  { yyerror("unexpected character"); }
 %%
-
