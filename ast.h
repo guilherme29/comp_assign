@@ -7,7 +7,8 @@
 struct _Expr {
   enum {
     E_INTEGER,
-    E_OPERATION
+    E_OPERATION,
+    E_VAR
   } kind;
   union {
     int value; // for integer values
