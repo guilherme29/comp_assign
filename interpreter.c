@@ -175,6 +175,12 @@ void eval_cmd(Cmd* list, int tabs) {
     	printf("PRINTF\n");
     	eval(list->attr._printf.expr, tabs+1);
     	break;
+    case E_LISTCMD:
+      eval_cmd(list->attr.list_cmd.head, tabs+1);
+      if(list->attr.list_cmd.tail != NULL){
+        eval_cmd(list->attr.list_cmd.tail, tabs);
+      }
+      break;
   }
   return;
 }
