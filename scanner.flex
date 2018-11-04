@@ -29,7 +29,7 @@ int yyline = 1;
 "true" { return TRUE; }
 "false" { return FALSE; }
 
-"import" { return IMPORT; }
+"include" { return INCLUDE; }
 "int main" { return MAIN; }
 "(" { return OPEN; }
 ")" { return CLOSE; }
@@ -45,7 +45,9 @@ int yyline = 1;
 "&" { return ADDRESS; }
 "%d" { return PR_INT; }
 "," { return COMMA; }
-"\"" {return QUOTES; }
+"\"" { return QUOTES; }
+"#" { return CARDINAL; }
+"stdio.h" { return STDIO_H; }
 
 \-?[0-9]+ {
    yylval.intValue = atoi(yytext);
