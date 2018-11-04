@@ -16,6 +16,7 @@ struct _Expr {
       struct _Expr* left;
       struct _Expr* right;
     } op; // for binary expressions
+    char *var;
   } attr;
 };
 
@@ -31,6 +32,7 @@ struct _Expr_bool {
       struct _Expr* left;
       struct _Expr* right;
     } op;
+    int var;
   } attr;
 };
 
