@@ -71,7 +71,11 @@ Expr* root;
 }
 
 %%
-program: expr { root = $1; };
+program:
+  CARDINAL INCLUDE LT STDIO_H GT MAIN OPEN CLOSE OPEN_BRACKET cmd_list CLOSE_BRACKET {
+    root = $10;
+  }
+;
 
 expr_bool:
   TRUE {
