@@ -71,7 +71,7 @@ Cmd* ast_while(Expr_bool* expr, Cmd* list){
   return node;
 }
 
-Cmd* ast_scan(char* var){
+Cmd* ast_scanf(char* var){
   Cmd* node = (Cmd*) malloc(sizeof(Cmd));
   node->kind = E_SCANF;
   node->attr._scanf.var = strdup(var);
