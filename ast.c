@@ -85,11 +85,17 @@ Cmd* ast_printf(Expr* expr){
   return node;
 }
 
-
 Cmd* ast_cmd_list(Cmd* cmd, Cmd* next) {
   Cmd* node = (Cmd*) malloc(sizeof(Cmd));
   node->kind = E_LISTCMD;
   node->attr.list_cmd.head = cmd;
   node->attr.list_cmd.tail = next;
+  return node;
+}
+
+Expr* ast_var(char* string) {
+  Expr* node = (Expr*) malloc(sizeof(Expr));
+  node->kind = E_VAR;
+  node->attr.var = strdup(string);
   return node;
 }
