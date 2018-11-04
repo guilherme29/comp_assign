@@ -89,7 +89,7 @@ Cmd* ast_printf(Expr* expr){
 Cmd* ast_cmd_list(Cmd* cmd, Cmd* next) {
   Cmd* node = (Cmd*) malloc(sizeof(Cmd));
   node->kind = E_LISTCMD;
-  node->attr.listcmd.head = cmd;
-  node->attr.listcmd.tail = next;
+  node->attr.list_cmd.head = cmd;
+  node->attr.list_cmd.tail = next;
   return node;
 }
