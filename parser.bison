@@ -36,7 +36,7 @@
   STDIO_H
   PR_INT
   QUOTES
-
+  FLOAT
 
 // Operator associativity & precedence
 %left EQUAL DIFF GT LT GET LET
@@ -50,6 +50,7 @@
 // Types/values in association to grammar symbols.
 %union {
   int intValue;
+  float floatValue;
   Expr* exprValue;
   Expr_bool* expr_boolValue;
   Cmd* cmd;
@@ -58,6 +59,7 @@
 }
 
 %type <intValue> INT
+%type <floatValue> FLOAT
 %type <exprValue> expr
 %type <expr_boolValue> expr_bool
 %type <cmd> cmd
@@ -159,6 +161,10 @@ expr_bool:
 expr:
   INT {
     $$ = ast_integer($1);
+  }
+  |
+  FLOAT {
+    $$ = ast_float($1);
   }
   |
   VAR {
