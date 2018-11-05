@@ -19,6 +19,8 @@ int yyline = 1;
 "*" { return MULT; }
 "/" { return DIV; }
 "%" { return MOD; }
+"int" { return INT; }
+"float" { return FLOAT; }
 
 "<" { return LT; }
 ">" { return GT; }

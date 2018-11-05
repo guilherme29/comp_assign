@@ -8,7 +8,8 @@ struct _Expr {
   enum {
     E_INTEGER,
     E_OPERATION,
-    E_VAR
+    E_VAR,
+    E_FLOAT
   } kind;
   union {
     int value; // for integer values
@@ -84,6 +85,7 @@ typedef struct _Cmd Cmd;
 
 // Constructor functions (see implementation in ast.c)
 Expr* ast_integer(int v);
+Expr* ast_float(float v);
 Expr* ast_operation(int operator, Expr* left, Expr* right);
 Expr_bool* ast_operation_bool(int operator, Expr* left, Expr* right);
 Expr_bool* ast_bool(int v);
