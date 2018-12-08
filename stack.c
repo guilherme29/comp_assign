@@ -6,31 +6,27 @@ Instr* instr_ldc(int v) {
   return node;
 }
 
-Instr* instr_adi(int v) {
+Instr* instr_adi() {
   Instr* node = (Instr*) malloc(sizeof(Instr));
   node->kind = I_ADI;
-  node->op.value = v;
   return node;
 }
 
-Instr* instr_sbi(int v) {
+Instr* instr_sbi() {
   Instr* node = (Instr*) malloc(sizeof(Instr));
   node->kind = I_SBI;
-  node->op.value = v;
   return node;
 }
 
-Instr* instr_mpi(int v) {
+Instr* instr_mpi() {
   Instr* node = (Instr*) malloc(sizeof(Instr));
   node->kind = I_MPI;
-  node->op.value = v;
   return node;
 }
 
-Instr* instr_dvi(int v) {
+Instr* instr_dvi() {
   Instr* node = (Instr*) malloc(sizeof(Instr));
   node->kind = I_DVI;
-  node->op.value = v;
   return node;
 }
 
@@ -41,7 +37,7 @@ Instr_List* instr_list(Instr* instr, Instr_List* next){
   return list;
 }
 
-Instr_List* append(Instr_List* list1, Instr_List* list2){ //o append e capaz de nao ser assim 
+Instr_List* append(Instr_List* list1, Instr_List* list2){ //o append e capaz de nao ser assim
   if(list1 == NULL){
     return list2;
   }
