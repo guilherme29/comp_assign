@@ -14,7 +14,7 @@ Assignment from compilators class - a very rudimentary C compiler
    
    to run
    ```Shell
-   ./interpreter file.c
+   ./interpreter < file.c
    ```
    
 
